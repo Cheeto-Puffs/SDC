@@ -1,7 +1,4 @@
-const Pool = require('pg-pool');
-const { Client } = require('pg');
-const client = new Client();
-client.connect();
+const { Client, Pool } = require('pg');
 
 const pool = new Pool();
 

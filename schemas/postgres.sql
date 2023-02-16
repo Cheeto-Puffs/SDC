@@ -10,7 +10,7 @@ CREATE TABLE Questions (
  id BIGSERIAL,
  product_id INTEGER,
  body VARCHAR(1000),
- date_written INTEGER,
+ date_written BIGINT,
  asker_name VARCHAR(60),
  asker_email VARCHAR(60),
  reported BOOLEAN,
