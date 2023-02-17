@@ -3,10 +3,11 @@ const {questions} = require('../models');
 module.exports = {
 
   getQuestions: (req, res) => {
-    questions.listQuestions(req.query)
+    console.log(req.params)
+    questions.listQuestions(req.params.product_id)
     .then((result) => {
       console.log(result);
-      res.status(200).send(result.data)
+      res.status(200).send(result.rows)
     })
     .catch(err => console.log('Error getting questions: ', err))
   },

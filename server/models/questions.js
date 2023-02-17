@@ -1,12 +1,14 @@
 const db = require('../pgDB.js');
-const pool = require('pool');
+const { Pool } = require('pg');
+const pool = new Pool();
 
 module.exports = {
 
-  listQuestions: (options, product_id) => {
+  listQuestions: (product_id) => {
     return pool.query(`SELECT * FROM questions WHERE product_id = ${product_id}`)
     .then(res => {
-      console.log(res)
+      console.log(res.rows)
+      return res.rows;
     })
     .catch(err => console.log('error getting questions in models: ', err))
   },

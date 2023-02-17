@@ -1,8 +1,6 @@
 const ctrl = require('./controllers');
 const router = require('express').Router();
 
-// Need to specify ids and helpful/report here?
-
 router.get('/questions/:product_id', ctrl.questions.getQuestions);
 router.post('/questions/:product_id', ctrl.questions.postQuestions);
 router.put('/questions/:question_id/helpful', ctrl.questions.putQuestionHelpful);
