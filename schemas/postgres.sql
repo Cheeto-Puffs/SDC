@@ -1,13 +1,11 @@
--- DROP DATABASE IF EXISTS questionsAnswers;
+DROP DATABASE IF EXISTS questionsanswers;
 
--- CREATE DATABASE questionsAnswers;
+CREATE DATABASE questionsanswers;
 
--- \c questionsAnswers;
-
-DROP TABLE IF EXISTS Questions;
+DROP TABLE IF EXISTS Questions CASCADE;
 
 CREATE TABLE Questions (
- id BIGSERIAL,
+ id SERIAL PRIMARY KEY,
  product_id INTEGER,
  body VARCHAR(1000),
  date_written BIGINT,
@@ -17,33 +15,30 @@ CREATE TABLE Questions (
  helpful INTEGER
 );
 
-ALTER TABLE Questions ADD CONSTRAINT Questions_pkey PRIMARY KEY (id);
-
-DROP TABLE IF EXISTS Answers;
+DROP TABLE IF EXISTS Answers CASCADE;
 
 CREATE TABLE Answers (
- id BIGSERIAL,
- question_id INTEGER,
+ id SERIAL PRIMARY KEY,
+ question_id INTEGER REFERENCES Questions(id),
  body VARCHAR(1000),
- date_written INTEGER,
+ date_written BIGINT,
  answerer_name VARCHAR(60),
  answerer_email VARCHAR(60),
  reported BOOLEAN,
  helpful INTEGER
 );
 
+DROP TABLE IF EXISTS answers_photos;
 
-ALTER TABLE Answers ADD CONSTRAINT Answers_pkey PRIMARY KEY (id);
-
-DROP TABLE IF EXISTS Photos;
-
-CREATE TABLE Photos (
- id BIGSERIAL,
- answer_id INTEGER,
- url VARCHAR(255)
+CREATE TABLE answers_photos (
+ id SERIAL PRIMARY KEY,
+ answer_id INTEGER REFERENCES Answers(id),
+ url VARCHAR(2048)
 );
 
-ALTER TABLE Photos ADD CONSTRAINT Photos_pkey PRIMARY KEY (id);
 
-ALTER TABLE Answers ADD CONSTRAINT Answers_question_id_fkey FOREIGN KEY (question_id) REFERENCES Questions(id);
-ALTER TABLE Photos ADD CONSTRAINT Photos_answer_id_fkey FOREIGN KEY (answer_id) REFERENCES Answers(id);
+COPY questions(id, product_id, body, date_written, asker_name, asker_email, reported, helpful) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/questions.csv' DELIMITER ',' CSV HEADER;
+
+COPY answers(id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers.csv' DELIMITER ',' CSV HEADER;
+
+COPY answers_photos(id, answer_id, url) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers_photos.csv' DELIMITER ',' CSV HEADER;

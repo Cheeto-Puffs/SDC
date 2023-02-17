@@ -1,1 +1,3 @@
 csvFiles/
+node_modules/
+env
