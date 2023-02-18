@@ -5,7 +5,6 @@ module.exports = {
   getPhotos: (req, res) => {
     answersPhotos.listPhotos(req.params.answer_id)
     .then((result) => {
-      console.log(result);
       res.status(200).send(result)
     })
     .catch(err => console.log('Error getting photos: ', err))

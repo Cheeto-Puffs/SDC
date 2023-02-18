@@ -3,7 +3,6 @@ const {questions} = require('../models');
 module.exports = {
 
   getQuestions: (req, res) => {
-    console.log(req.params)
     questions.listQuestions(req.params.product_id)
     .then((result) => {
       res.status(200).send(result.rows)
