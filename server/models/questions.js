@@ -23,12 +23,12 @@ module.exports = {
     .catch(err => console.log('error posting question in models: ', err))
   },
   markQuestionHelpful: (question_id) => {
-    return pool.query(`UPDATE questions SET helpful = helpful + 1 WHERE question_id = ${question_id}`)
+    return pool.query(`UPDATE questions SET helpful = helpful + 1 WHERE id = ${question_id}`)
     .then(res => console.log(res))
     .catch(err => console.log('error updating helpful for question in models: ', err))
   },
   reportQuestion: (question_id) => {
-    return pool.query(`UPDATE questions SET reported = 't' WHERE question_id = ${question_id}`)
+    return pool.query(`UPDATE questions SET reported = 't' WHERE id = ${question_id}`)
     .then(res => console.log(res))
     .catch(err => console.log('error reporting question in models: ', err))
   }

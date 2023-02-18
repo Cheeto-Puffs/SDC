@@ -11,11 +11,11 @@ module.exports = {
     .then(res => res.rows)
     .catch(err => console.log('error getting photos in models: ', err));
   },
-  addPhotos: (answer_id, urls) => {
-    return urls.map((url) => {pool.query(`INSERT INTO answers_photos (answer_id, url) VALUES (${answer_id}, ${url})`)})
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => console.log('error getting photos in models: ', err));
+  addPhotos: (answer_id, photos) => {
+    photos.urls.map((url) => {
+      return pool.query(`INSERT INTO answers_photos (answer_id, url) VALUES (${answer_id}, '${url}')`)
+      .then(res => console.log(res))
+      .catch(err => console.log('error posting photos in models: ', err)
+    )});
   }
 }

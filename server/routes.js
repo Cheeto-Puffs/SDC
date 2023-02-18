@@ -12,6 +12,6 @@ router.put('/answers/:answer_id/helpful', ctrl.answers.putAnswerHelpful);
 router.put('/answers/:answer_id/reported', ctrl.answers.putAnswerReport)
 
 router.get('/answersPhotos/:answer_id', ctrl.answersPhotos.getPhotos);
-router.post('/answersPhotos:answer_id', ctrl.answersPhotos.postPhotos);
+router.post('/answersPhotos/:answer_id', ctrl.answersPhotos.postPhotos);
 
 module.exports = router;

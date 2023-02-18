@@ -13,7 +13,6 @@ module.exports = {
   postPhotos: (req, res) => {
     answersPhotos.addPhotos(req.params.answer_id, req.body)
     .then((result) => {
-      console.log(result);
       res.status(201).send()
     })
     .catch(err => console.log('Error adding photos: ', err))

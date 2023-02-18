@@ -21,7 +21,6 @@ module.exports = {
   putAnswerHelpful: (req, res) => {
     answers.markAnswerHelpful(req.params.answer_id)
     .then((result) => {
-      console.log(result);
       res.status(200).send()
     })
     .catch(err => console.log('Error marking answer as helpful: ', err))
@@ -29,7 +28,6 @@ module.exports = {
   putAnswerReport: (req, res) => {
     answers.reportAnswer(req.params.answer_id)
     .then((result) => {
-      console.log(result);
       res.status(200).send()
     })
     .catch(err => console.log('Error reporting answer: ', err));
