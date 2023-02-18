@@ -1,6 +1,8 @@
 const db = require('../pgDB.js');
 const { Pool } = require('pg');
-const pool = new Pool();
+const pool = new Pool({
+  database: process.env.DB_NAME
+});
 
 module.exports = {
 
@@ -13,7 +15,7 @@ module.exports = {
     .catch(err => console.log('error getting answers in models: ', err))
   },
   addAnswer: (question_id, answer) => {
-    return pool.query(`INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, reported, helpful) VALUES (${question_id}, ${answer.body}, ${Date.now()}, ${answer.answerer_name}, ${answer.answerer_email}, 'f', 0)`)
+    return pool.query(`INSERT INTO answers (question_id, body, date_written, answerer_name, answerer_email, reported, helpful) VALUES (${question_id}, '${answer.body}', ${Date.now()}, '${answer.answerer_name}', '${answer.answerer_email}', 'f', 0)`)
     .then(res => {
       console.log(res)
     })

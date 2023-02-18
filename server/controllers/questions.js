@@ -12,11 +12,9 @@ module.exports = {
     .catch(err => console.log('Error getting questions: ', err))
   },
   postQuestions: (req, res) => {
-    questions.addQuestion(req.body)
-    .then((result) => {
-      console.log(result);
-      res.status(201).send()
-    })
+    console.log(req.body)
+    questions.addQuestion(req.params.product_id, req.body)
+    .then(result => res.status(201).send())
     .catch(err => console.log('Error adding question: ', err))
   },
   putQuestionHelpful: (req, res) => {

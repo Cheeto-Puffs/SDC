@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS questionsanswers;
-
-CREATE DATABASE questionsanswers;
-
 DROP TABLE IF EXISTS Questions CASCADE;
 
 CREATE TABLE Questions (
@@ -42,3 +38,9 @@ COPY questions(id, product_id, body, date_written, asker_name, asker_email, repo
 COPY answers(id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers.csv' DELIMITER ',' CSV HEADER;
 
 COPY answers_photos(id, answer_id, url) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers_photos.csv' DELIMITER ',' CSV HEADER;
+
+SELECT setval(pg_get_serial_sequence('questions', 'id'), (SELECT MAX(id) FROM questions));
+
+SELECT setval(pg_get_serial_sequence('answers', 'id'), (SELECT MAX(id) FROM answers));
+
+SELECT setval(pg_get_serial_sequence('answers_photos', 'id'), (SELECT MAX(id) FROM answers_photos));

@@ -3,15 +3,15 @@ const {answersPhotos} = require('../models');
 module.exports = {
 
   getPhotos: (req, res) => {
-    questions.listPhotos(req.query)
+    answersPhotos.listPhotos(req.params.answer_id)
     .then((result) => {
       console.log(result);
-      res.status(200).send(result.data)
+      res.status(200).send(result)
     })
     .catch(err => console.log('Error getting photos: ', err))
   },
   postPhotos: (req, res) => {
-    questions.addPhotos(req.body)
+    answersPhotos.addPhotos(req.params.answer_id, req.body)
     .then((result) => {
       console.log(result);
       res.status(201).send()

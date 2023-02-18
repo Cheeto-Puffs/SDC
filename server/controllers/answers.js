@@ -11,7 +11,7 @@ module.exports = {
     .catch(err => console.log('Error getting answers: ', err))
   },
   postAnswers: (req, res) => {
-    answers.addAnswer(req.body)
+    answers.addAnswer(req.params.question_id, req.body)
     .then((result) => {
       console.log(result);
       res.status(201).send()
