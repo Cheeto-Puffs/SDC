@@ -11,6 +11,8 @@ CREATE TABLE Questions (
  helpful INTEGER
 );
 
+CREATE INDEX prod_id_idx ON Questions(product_id);
+
 DROP TABLE IF EXISTS Answers CASCADE;
 
 CREATE TABLE Answers (
@@ -24,6 +26,8 @@ CREATE TABLE Answers (
  helpful INTEGER
 );
 
+CREATE INDEX q_id_idx ON Answers(question_id);
+
 DROP TABLE IF EXISTS answers_photos;
 
 CREATE TABLE answers_photos (
@@ -32,6 +36,7 @@ CREATE TABLE answers_photos (
  url VARCHAR(2048)
 );
 
+CREATE INDEX a_id_idx ON answers_photos(answer_id);
 
 COPY questions(id, product_id, body, date_written, asker_name, asker_email, reported, helpful) FROM '/Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/questions.csv' DELIMITER ',' CSV HEADER;
 
@@ -44,3 +49,6 @@ SELECT setval(pg_get_serial_sequence('questions', 'id'), (SELECT MAX(id) FROM qu
 SELECT setval(pg_get_serial_sequence('answers', 'id'), (SELECT MAX(id) FROM answers));
 
 SELECT setval(pg_get_serial_sequence('answers_photos', 'id'), (SELECT MAX(id) FROM answers_photos));
+
+
+-- 1 Upload file by running command in local terminal "scp -i 'path/to/key-pair-file' 'path/to/local/file' 'username@public-dns-of-ec2-instance':'path/on/ec2/instance'"
