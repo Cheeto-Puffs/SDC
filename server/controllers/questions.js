@@ -5,7 +5,7 @@ module.exports = {
   getQuestions: (req, res) => {
     questions.listQuestions(req.params.product_id)
     .then((result) => {
-      res.status(200).send(result.rows)
+      res.status(200).send(result)
     })
     .catch(err => console.log('Error getting questions: ', err))
   },

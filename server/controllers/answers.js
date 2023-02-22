@@ -12,7 +12,7 @@ module.exports = {
   postAnswers: (req, res) => {
     answers.addAnswer(req.params.question_id, req.body)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(201).send()
     })
     .catch(err => console.log('Error adding answer: ', err))
