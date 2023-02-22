@@ -1,13 +1,10 @@
 const db = require('../pgDB.js');
 const { Pool } = require('pg');
-const pool = new Pool({
-  database: process.env.DB_NAME
-});
 
 module.exports = {
 
   listAnswers: (question_id, page = 1, count = 5) => {
-    return pool.query(`SELECT json_build_object(
+    return db.query(`SELECT json_build_object(
       'question', ${question_id},
       'page', ${page},
       'count', ${count},
@@ -36,7 +33,7 @@ module.exports = {
     .catch(err => console.log('error getting answers in models: ', err))
   },
   addAnswer: (question_id, answer) => {
-    return pool.query(`INSERT INTO answers (question_id, a_body, a_date_written, answerer_name, answerer_email, a_reported, a_helpful) VALUES (${question_id}, '${answer.body}', ${Date.now()}, '${answer.answerer_name}', '${answer.answerer_email}', 'f', 0)`)
+    return db.query(`INSERT INTO answers (question_id, a_body, a_date_written, answerer_name, answerer_email, a_reported, a_helpful) VALUES (${question_id}, '${answer.body}', ${Date.now()}, '${answer.answerer_name}', '${answer.answerer_email}', 'f', 0)`)
     .then(res => {
       // console.log(res)
       answer.photos.map((url) => {
@@ -49,12 +46,12 @@ module.exports = {
     .catch(err => console.log('error getting questions in models: ', err))
   },
   markAnswerHelpful: (answer_id) => {
-    return pool.query(`UPDATE answers SET a_helpful = a_helpful + 1 WHERE a_id = ${answer_id}`)
+    return db.query(`UPDATE answers SET a_helpful = a_helpful + 1 WHERE a_id = ${answer_id}`)
     .then(res => console.log(res))
     .catch(err => console.log('error updating helpful for answer in models: ', err))
   },
   reportAnswer: (answer_id) => {
-    return pool.query(`UPDATE answers SET a_reported = 't' WHERE a_id = ${answer_id}`)
+    return db.query(`UPDATE answers SET a_reported = 't' WHERE a_id = ${answer_id}`)
     .then(res => console.log(res))
     .catch(err => console.log('error reporting answer in models: ', err))
   }
