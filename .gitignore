@@ -1,5 +1,5 @@
 csvFiles/
 node_modules/
-env
+.env
 DS_Store
 Incredibles_SDC/
