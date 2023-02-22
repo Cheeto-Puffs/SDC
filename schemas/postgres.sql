@@ -56,3 +56,4 @@ SELECT setval(pg_get_serial_sequence('answers_photos', 'p_id'), (SELECT MAX(p_id
 
 
 -- 1 Upload file by running command in local terminal "scp -i 'path/to/key-pair-file' 'path/to/local/file' 'username@public-dns-of-ec2-instance':'path/on/ec2/instance'"
+-- "scp -i /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/aws/qnaSDC.pem /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers.csv ubuntu@ec2-35-93-32-213.us-west-2.compute.amazonaws.com:home/ubuntu/SDC_Data"
