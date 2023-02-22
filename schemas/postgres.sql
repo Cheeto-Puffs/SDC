@@ -48,6 +48,8 @@ SELECT setval(pg_get_serial_sequence('questions', 'q_id'), (SELECT MAX(q_id) FRO
 
 SELECT to_timestamp(q_date_written / 1000) FROM questions;
 
+-- UPDATE questions SET q_date_written = to_timestamp(q_date_written / 1000);
+
 SELECT setval(pg_get_serial_sequence('answers', 'a_id'), (SELECT MAX(a_id) FROM answers));
 
 SELECT to_timestamp(a_date_written / 1000) FROM answers;
@@ -56,4 +58,6 @@ SELECT setval(pg_get_serial_sequence('answers_photos', 'p_id'), (SELECT MAX(p_id
 
 
 -- 1 Upload file by running command in local terminal "scp -i 'path/to/key-pair-file' 'path/to/local/file' 'username@public-dns-of-ec2-instance':'path/on/ec2/instance'"
--- "scp -i /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/aws/qnaSDC.pem /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers.csv ubuntu@ec2-35-93-32-213.us-west-2.compute.amazonaws.com:home/ubuntu/SDC_Data"
+-- "scp -i /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/aws/qnaSDC.pem /Users/jacobfink/Documents/Hack-Reactor-Junior-Phase/SDC/csvFiles/answers.csv ubuntu@ec2-18-236-91-207.us-west-2.compute.amazonaws.com:/home/ubuntu/SDC_Data"
+
+-- COPY answers_photos(p_id, answer_id, url) FROM '/tmp/SDC_Data/answers_photos.csv' DELIMITER ',' CSV HEADER;

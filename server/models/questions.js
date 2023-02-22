@@ -7,7 +7,7 @@ const pool = new Pool({
 module.exports = {
 
   listQuestions: (product_id, count = 5, page = 1) => {
-    return pool.query(`SELECT json_build_object(
+    return db.query(`SELECT json_build_object(
       'product_id', ${product_id},
       'results', json_agg(
         json_build_object(
