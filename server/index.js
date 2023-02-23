@@ -11,7 +11,7 @@ app.use(cors());
 app.use(morgan('dev'));
 const router = require('./routes.js');
 
-app.use('/api', router);
+app.use('/', router);
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
