@@ -9,7 +9,9 @@ router.put('/qa/questions/:question_id/reported', ctrl.questions.putQuestionRepo
 router.get('/qa/questions/:question_id/answers', ctrl.answers.getAnswers);
 router.post('/qa/questions/:question_id/answers', ctrl.answers.postAnswers);
 router.put('/qa/answers/:answer_id/helpful', ctrl.answers.putAnswerHelpful);
-router.put('/qa/answers/:answer_id/reported', ctrl.answers.putAnswerReport)
+router.put('/qa/answers/:answer_id/reported', ctrl.answers.putAnswerReport);
+
+router.get('/loaderio-b2bc7444564bbc893079a2d94937f9ed', ctrl.file.getFile);
 
 // router.get('/answersPhotos/:answer_id', ctrl.answersPhotos.getPhotos);
 // router.post('/answersPhotos/:answer_id', ctrl.answersPhotos.postPhotos);
