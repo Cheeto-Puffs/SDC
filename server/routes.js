@@ -11,7 +11,7 @@ router.post('/qa/questions/:question_id/answers', ctrl.answers.postAnswers);
 router.put('/qa/answers/:answer_id/helpful', ctrl.answers.putAnswerHelpful);
 router.put('/qa/answers/:answer_id/reported', ctrl.answers.putAnswerReport);
 
-router.get('/loaderio-b2bc7444564bbc893079a2d94937f9ed', ctrl.file.getFile);
+router.get('/loaderio-d16883044f269b9aee25bb26c1620b1d', ctrl.file.getFile);
 
 // router.get('/answersPhotos/:answer_id', ctrl.answersPhotos.getPhotos);
 // router.post('/answersPhotos/:answer_id', ctrl.answersPhotos.postPhotos);

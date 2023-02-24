@@ -1,5 +1,5 @@
 module.exports = {
   getFile: (req, res) => {
-    res.send('loaderio-b2bc7444564bbc893079a2d94937f9ed');
+    res.send('loaderio-d16883044f269b9aee25bb26c1620b1d');
   }
 }
